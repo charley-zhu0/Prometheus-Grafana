@@ -25,20 +25,18 @@ prometheus server的主要作用是负责收集和存储数据指标，支持表
 
    切换到解压目录，检查Prometheus版本
 
-   `[root@localhost tmp]# cd prometheus-2.45.4.linux-amd64`
-
-   `[root@localhost prometheus-2.45.4.linux-amd64]# ls`
-
-   `LICENSE  NOTICE  console_libraries  consoles  prometheus  prometheus.yml  promtool`
-
-   `[root@localhost prometheus-2.45.4.linux-amd64]# ./prometheus --version`
-
-   `prometheus, version 2.45.4 (branch: HEAD, revision: dff334450260a50c47b4b4274c3edc6bfb866c60)`
-     `build user:       root@6b005e74c4f5`
-     `build date:       20240318-10:58:43`
-     `go version:       go1.21.8`
-     `platform:         linux/amd64`
-     `tags:             netgo,builtinassets,stringlabels`
+   ```
+   [root@localhost tmp]# cd prometheus-2.45.4.linux-amd64
+   [root@localhost prometheus-2.45.4.linux-amd64]# ls
+   LICENSE  NOTICE  console_libraries  consoles  prometheus  prometheus.yml  promtool
+   [root@localhost prometheus-2.45.4.linux-amd64]# ./prometheus --version
+   prometheus, version 2.45.4 (branch: HEAD, revision: dff334450260a50c47b4b4274c3edc6bfb866c60)
+     build user:       root@6b005e74c4f5
+     build date:       20240318-10:58:43
+     go version:       go1.21.8
+     platform:         linux/amd64
+     tags:             netgo,builtinassets,stringlabels
+   ```
 
    运行Prometheus程序
 
