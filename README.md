@@ -182,3 +182,24 @@ docker run -d \
 除此之外，还有很多其他的方式来收集 Nginx 的指标，比如：[nginx_exporter](https://github.com/discordianfish/nginx_exporter) 通过抓取 Nginx 自带的统计页面 `/nginx_status` 可以获取一些比较简单的指标（需要开启 [ngx_http_stub_status_module 模块](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html)）；[nginx_request_exporter](https://github.com/markuslindenberg/nginx_request_exporter) 通过 [syslog 协议](https://en.wikipedia.org/wiki/Syslog) 收集并分析 Nginx 的 access log 来统计 HTTP 请求相关的一些指标；[nginx-prometheus-shiny-exporter](https://github.com/serge-name/nginx-prometheus-shiny-exporter) 和 nginx_request_exporter 类似，也是使用 syslog 协议来收集 access log，不过它是使用 [Crystal 语言](https://github.com/serge-name/nginx-prometheus-shiny-exporter) 写的。还有 [vovolie/lua-nginx-prometheus](https://github.com/vovolie/lua-nginx-prometheus) 基于 Openresty、Prometheus、Consul、Grafana 实现了针对域名和 Endpoint 级别的流量统计。
 
 有需要或感兴趣的同学可以对照说明文档自己安装体验下，这里就不一一尝试了。
+
+### 收集mongodb指标
+地址：https://github.com/percona/mongodb_exporter
+首先创建mongdb的账号：
+```
+use admin
+db.createUser({ 
+    user: "prometheus",
+    pwd: "prometheus",
+    roles: [
+        { role: "read", db: "admin" },
+        { role: "readAnyDatabase", db: "admin" },
+        { role: "clusterMonitor", db: "admin" }
+    ]
+});
+```
+然后运行
+```
+nohup  ./mongodb_exporter --mongodb.uri mongodb://prometheus:prometheus@127.0.0.1:27017/admin --collect-all  &
+```
+默认运行在9216端口
